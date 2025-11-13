@@ -30,7 +30,8 @@ ingress:
   annotations: 
     nginx.ingress.kubernetes.io/rewrite-target: /
   enabled: true
-  name: api-gateway-ingress
   className: nginx
-  path: /(.*)
+  name: api-gateway-ingress
+  
+  path: /api/(.*)
   pathType: Prefix
