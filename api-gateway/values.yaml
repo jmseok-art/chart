@@ -1,0 +1,36 @@
+namespace: api-gateway
+replicaCount: 2
+
+
+deployment:
+  name: api-gateway-deployment
+
+service:
+  name: api-gateway
+  port: 8000
+  type: ClusterIP
+  targetPort: 8000
+
+image:
+  repository: jeongmin0709/msa_repository
+  tag: "api-gateway-latest"
+  pullPolicy: IfNotPresent
+
+configMap:
+  name: api-gateway-config
+
+secret:
+  name: api-gateway-secret
+
+serviceAccount:
+  create: true
+  name: api-gateway-sa
+
+ingress:
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  enabled: true
+  name: api-gateway-ingress
+  className: nginx
+  path: /(.*)
+  pathType: Prefix
