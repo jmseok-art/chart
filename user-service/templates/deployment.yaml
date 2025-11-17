@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Chart.Name  }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -25,5 +26,5 @@ spec:
       volumes:
       - name: config-volume
         configMap:
-          name: {{ include "mychart.fullname" . }}
-            
+          name: {{ .Values.configMap.name }}
+          namespace: {{ .Values.namespace }}
