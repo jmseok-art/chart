@@ -4,4 +4,5 @@ metadata:
   name: {{ .Values.configMap.name }}
   namespace: {{ .Values.namespace }}
 data:
-  application.yaml: {{ .Files.Get "application.yaml" | indent 4 }}
+  application.yaml: |
+  {{ .Files.Get "application.yaml" | indent 4 }}
