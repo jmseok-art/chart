@@ -12,12 +12,12 @@ metadata:
 spec:
   ingressClassName: {{ .Values.ingress.className | default "nginx" }}
   rules:
-     - http:
-        paths:
-        - path: {{ .Values.ingress.path }}
-          pathType: {{ .Values.ingress.pathType | default "Prefix" }}
-          backend:
-            service:
-              name: {{ .Values.service.name }} 
-              port:
-                number: {{ .Values.service.port }}
+  - http:
+      paths:
+      - path: {{ .Values.ingress.path }}
+        pathType: {{ .Values.ingress.pathType | default "Prefix" }}
+        backend:
+          service:
+            name: {{ .Values.service.name }}
+            port:
+              number: {{ .Values.service.port }}
