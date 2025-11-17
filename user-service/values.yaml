@@ -1,0 +1,21 @@
+namespace: user-service
+replicaCount: 2
+
+
+deployment:
+  name: user-service-deployment
+
+service:
+  name: user-service
+  port: 8001
+  type: ClusterIP
+  targetPort: 8001
+
+image:
+  repository: jeongmin0709/msa_repository
+  tag: "user-service-latest"
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+  name: user-service-sa
