@@ -19,3 +19,6 @@ image:
 serviceAccount:
   create: true
   name: user-service-sa
+
+configMap:
+  name: user-service-cm

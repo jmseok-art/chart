@@ -1,0 +1,30 @@
+server:
+  port: 8083
+
+spring:
+  data:
+    redis:
+      host: redis-master
+      port: 6379
+    
+  application:
+    name: user-service
+
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0  # 모든 요청 추적
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans
+
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+jwt:
+  expire-time:
+    access-token: 900000
+    refresh-token: 2592000000

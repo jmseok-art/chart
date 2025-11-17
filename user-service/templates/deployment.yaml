@@ -22,3 +22,8 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: k8s
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ include "mychart.fullname" . }}
+            
