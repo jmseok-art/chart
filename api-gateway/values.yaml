@@ -16,22 +16,14 @@ image:
   tag: "api-gateway-latest"
   pullPolicy: IfNotPresent
 
-configMap:
-  name: api-gateway-config
-
-secret:
-  name: api-gateway-secret
-
 serviceAccount:
   create: true
   name: api-gateway-sa
 
 ingress:
+  enabled: true
   annotations: 
     nginx.ingress.kubernetes.io/rewrite-target: /
-  enabled: true
   className: nginx
-  name: api-gateway-ingress
-  
-  path: /api/(.*)
+  path: /api
   pathType: Prefix
