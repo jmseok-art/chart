@@ -29,6 +29,11 @@ env:
     value: "file:/app/config/application.yaml"
   - name: KEY_PATH
     value: "file:/app/secret/private_key_pkcs8.pem"
+  - name: REDIS_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: redis
+        key: redis-password
 
 volumeMounts:
   - name: config-volume
