@@ -23,3 +23,6 @@ serviceAccount:
 
 configMap:
   name: user-service-cm
+
+secret:
+  name: user-service-secret

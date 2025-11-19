@@ -23,12 +23,15 @@ spec:
         env:
         - name: SPRING_CONFIG_LOCATION
           value: "file:/app/config/application.yaml"
-        - name: SPRING_PROFILES_ACTIVE
-          value: k8s
+        - name: KEY_PATH
+          value: "file:/app/secret/private_key_pkcs8.pem"
         volumeMounts:
         - name: config-volume
           mountPath: /app/config/application.yaml
           subPath: application.yaml
+        - name: secret-volume
+          mountPath: /app/secret/private_key_pkcs8.pem
+          subPath: private_key_pkcs8.pem
       volumes:
       - name: config-volume
         configMap:
