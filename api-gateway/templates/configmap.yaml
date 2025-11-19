@@ -6,3 +6,5 @@ metadata:
 data:
   application.yaml: |
 {{ .Files.Get "application.yaml" | indent 4 }}
+  public_key.pem: |
+{{ .Files.Get "public_key.pem" | indent 4 }}

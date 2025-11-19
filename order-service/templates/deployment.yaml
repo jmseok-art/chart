@@ -39,6 +39,3 @@ spec:
       - name: config-volume
         configMap:
           name: {{ .Values.configMap.name }}
-      - name: secret-volume    
-        secret:
-          secretName: {{ .Values.secret.name }}

@@ -21,8 +21,6 @@ serviceAccount:
 configMap:
   name: order-service-cm
 
-secret:
-  name: order-service-secret
 
 env:
   - name: SPRING_CONFIG_LOCATION

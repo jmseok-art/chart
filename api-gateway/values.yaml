@@ -32,11 +32,19 @@ ingress:
 configMap:
   name: api-gateway-cm
 
+secret:
+  name: api-gateway-secret
+
 env:
   - name: SPRING_CONFIG_LOCATION
     value: "file:/app/config/application.yaml"
+  - name: KEY_PATH
+    value: "file:/app/secret/public_key.pem"
 
 volumeMounts:
   - name: config-volume
     mountPath: /app/config/application.yaml
     subPath: application.yaml
+  - name: secret-volume
+    mountPath: /app/secret/public_key.pem
+    subPath: public_key.pem

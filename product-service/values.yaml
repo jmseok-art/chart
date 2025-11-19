@@ -25,9 +25,6 @@ serviceAccount:
 configMap:
   name: product-service-cm
 
-secret:
-  name: product-service-secret
-
 env:
   - name: SPRING_CONFIG_LOCATION
     value: "file:/app/config/application.yaml"
