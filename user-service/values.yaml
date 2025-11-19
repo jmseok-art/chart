@@ -13,7 +13,7 @@ service:
 
 image:
   repository: jeongmin0709/msa_repository
-  tag: "user-service-latest"
+  tag: "47"
   pullPolicy: IfNotPresent
 
 serviceAccount:
