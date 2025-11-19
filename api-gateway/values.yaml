@@ -14,7 +14,7 @@ service:
 image:
   repository: jeongmin0709/msa_repository
   tag: "api-gateway"
-  version: "latest"
+  version: "53"
   pullPolicy: IfNotPresent
 
 serviceAccount:
@@ -28,3 +28,6 @@ ingress:
   className: nginx
   path: /api(/|$)(.*)
   pathType: ImplementationSpecific
+
+configMap:
+  name: api-gateway-cm
