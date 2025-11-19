@@ -26,5 +26,5 @@ ingress:
   annotations: 
     nginx.ingress.kubernetes.io/rewrite-target: /
   className: nginx
-  path: /api
-  pathType: Prefix
+  path: /api(/|$)(.*)
+  pathType: ImplementationSpecific
