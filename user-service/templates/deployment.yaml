@@ -16,15 +16,24 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
       - name: {{ .Chart.Name  }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ .Values.image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.targetPort }}
         env:
+        - name: SPRING_CONFIG_LOCATION
+          value: "file:/app/config/application.yaml"
         - name: SPRING_PROFILES_ACTIVE
           value: k8s
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config/application.yaml
+          subPath: application.yaml
       volumes:
       - name: config-volume
         configMap:
           name: {{ .Values.configMap.name }}
+          namespace: {{ .Values.namespace }}
+        secret:
+          secretName: {{ .Values.secret.name }}
           namespace: {{ .Values.namespace }}
