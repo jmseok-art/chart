@@ -31,3 +31,12 @@ ingress:
 
 configMap:
   name: api-gateway-cm
+
+env:
+  - name: SPRING_CONFIG_LOCATION
+    value: "file:/app/config/application.yaml"
+
+volumeMounts:
+  - name: config-volume
+    mountPath: /app/config/application.yaml
+    subPath: application.yaml

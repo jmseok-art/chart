@@ -20,6 +20,25 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.targetPort }}
+        {{- if .Values.env }}
         env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: k8s
+        {{- range .Values.env }}
+        - name: {{ .name }}
+          value: {{ .value | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.volumeMounts }}
+        volumeMounts:
+        {{- range .Values.volumeMounts }}
+        - name: {{ .name }}
+          mountPath: {{ .mountPath }}
+          subPath: {{ .subPath }}
+        {{- end }}
+        {{- end }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Values.configMap.name }}
+      - name: secret-volume    
+        secret:
+          secretName: {{ .Values.secret.name }}
