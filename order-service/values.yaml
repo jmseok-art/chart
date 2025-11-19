@@ -1,0 +1,35 @@
+name: order-service
+namespace: order-service
+replicaCount: 2
+
+service:
+  name: order-service
+  port: 8002
+  type: ClusterIP
+  targetPort: 8002
+
+image:
+  repository: jeongmin0709/msa_repository
+  tag: "order-service"
+  version: "1"
+  pullPolicy: IfNotPresent
+
+serviceAccount:
+  create: true
+  name: order-service-sa
+
+configMap:
+  name: order-service-cm
+
+secret:
+  name: order-service-secret
+
+env:
+  - name: SPRING_CONFIG_LOCATION
+    value: "file:/app/config/application.yaml"
+
+volumeMounts:
+  - name: config-volume
+    mountPath: /app/config/application.yaml
+    subPath: application.yaml
+

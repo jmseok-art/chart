@@ -1,0 +1,36 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: product-service
+  kafka:
+    bootstrap-servers: localhost:9094
+    consumer:
+      group-id: product-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.trusted.packages: "*"
+
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html  
+    
+management:
+  tracing:
+    sampling:
+      probability: 1.0  # 모든 요청 추적
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+  endpoints:
+    web:
+      exposure:
+        include: '*'
