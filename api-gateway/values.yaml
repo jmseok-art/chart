@@ -14,7 +14,7 @@ service:
 image:
   repository: jeongmin0709/msa_repository
   tag: "api-gateway"
-  version: "49"
+  version: "latest"
   pullPolicy: IfNotPresent
 
 serviceAccount:

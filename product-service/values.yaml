@@ -15,7 +15,7 @@ service:
 image:
   repository: jeongmin0709/msa_repository
   tag: "product-service"
-  version: "1"
+  version: "49"
   pullPolicy: IfNotPresent
 
 serviceAccount:

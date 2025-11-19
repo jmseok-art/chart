@@ -11,7 +11,7 @@ service:
 image:
   repository: jeongmin0709/msa_repository
   tag: "order-service"
-  version: "1"
+  version: "49"
   pullPolicy: IfNotPresent
 
 serviceAccount:
