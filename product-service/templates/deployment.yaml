@@ -16,7 +16,7 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
       - name: {{ .Values.name  }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ .Values.image.version }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.targetPort }}

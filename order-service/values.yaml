@@ -9,9 +9,8 @@ service:
   targetPort: 8002
 
 image:
-  repository: jeongmin0709/msa_repository
-  tag: "order-service"
-  version: "51"
+  repository: jeongmin0709/order-service
+  tag: "1.0.0"
   pullPolicy: IfNotPresent
 
 serviceAccount:
