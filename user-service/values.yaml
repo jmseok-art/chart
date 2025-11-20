@@ -26,11 +26,11 @@ secret:
 env:
   - name: SPRING_CONFIG_LOCATION
     value: "file:/app/config/application.yaml"
-  - name: PREVATE_KEY
+  - name: PRIVATE_KEY
     valueFrom:
       secretKeyRef:
         name: user-service-secret
-        key: prevate-key
+        key: private-key
   - name: REDIS_PASSWORD
     valueFrom:
       secretKeyRef:
