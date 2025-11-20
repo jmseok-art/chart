@@ -26,8 +26,11 @@ secret:
 env:
   - name: SPRING_CONFIG_LOCATION
     value: "file:/app/config/application.yaml"
-  - name: KEY_PATH
-    value: "file:/app/secret/private_key_pkcs8.pem"
+  - name: PREVATE_KEY
+    valueFrom:
+      secretKeyRef:
+        name: user-service-secret
+        key: prevate-key
   - name: REDIS_PASSWORD
     valueFrom:
       secretKeyRef:
@@ -38,7 +41,4 @@ volumeMounts:
   - name: config-volume
     mountPath: /app/config/application.yaml
     subPath: application.yaml
-  - name: secret-volume
-    mountPath: /app/secret/private_key_pkcs8.pem
-    subPath: private_key_pkcs8.pem
 

@@ -37,13 +37,12 @@ secret:
 env:
   - name: SPRING_CONFIG_LOCATION
     value: "file:/app/config/application.yaml"
-  - name: KEY_PATH
-    value: "file:/app/secret/public_key.pem"
-
+  - name: PUBLIC_KEY
+    valueFrom:
+      secretKeyRef:
+        name: api-gateway-secret
+        key: public-key
 volumeMounts:
   - name: config-volume
     mountPath: /app/config/application.yaml
     subPath: application.yaml
-  - name: secret-volume
-    mountPath: /app/secret/public_key.pem
-    subPath: public_key.pem
