@@ -6,12 +6,15 @@ spring:
     name: order-service
 
   cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
     openfeign:
       circuitbreaker:
         enabled: true
         
   kafka:
-    bootstrap-servers: localhost:9094
+    bootstrap-servers: kafka.kafka.svc.cluster.local:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -40,7 +43,7 @@ management:
       probability: 1.0  # 모든 요청 추적
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: http://my-zipkin-collector.zipkin.svc.cluster.local/api/v2/spans
 
   endpoints:
     web:

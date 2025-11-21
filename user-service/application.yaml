@@ -2,6 +2,10 @@ server:
   port: 8001
 
 spring:
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
   data:
     redis:
       host: redis-master.redis.svc.cluster.local
@@ -17,7 +21,7 @@ management:
       probability: 1.0  # 모든 요청 추적
   zipkin:
     tracing:
-      endpoint: http://zipkin:9411/api/v2/spans
+      endpoint: http://my-zipkin-collector.zipkin.svc.cluster.local/api/v2/spans
 
   endpoints:
     web:

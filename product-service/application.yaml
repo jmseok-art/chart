@@ -2,10 +2,14 @@ server:
   port: 8003
 
 spring:
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
   application:
     name: product-service
   kafka:
-    bootstrap-servers: localhost:9094
+    bootstrap-servers: kafka.kafka.svc.cluster.local:9092
     consumer:
       group-id: product-consumer-group
       auto-offset-reset: earliest
@@ -28,8 +32,7 @@ management:
       probability: 1.0  # 모든 요청 추적
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
-
+      endpoint: http://my-zipkin-collector.zipkin.svc.cluster.local/api/v2/spans
   endpoints:
     web:
       exposure:
