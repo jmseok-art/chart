@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Update Tag
-        run: yq e -i -y '.image.tag = strenv(TAG)' ./$SERVICE/values.yaml
+        run: yq e -i '.image.tag = strenv(TAG)' ./$SERVICE/values.yaml
 
       # 3. git 설정
       - name: Configure Git
