@@ -18,7 +18,7 @@ jobs:
       - name: Update Tag
         run: |
           sudo apt-get update && sudo apt-get install -y yq
-          yq e -i ".image.tag = \"$TAG\"" ./$SERVICE/values.yaml
+          yq e -i -y ".image.tag = \"$TAG\"" ./$SERVICE/values.yaml
 
       # 3. git 설정
       - name: Configure Git
