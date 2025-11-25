@@ -1,35 +1,26 @@
 name: product-service
 namespace: product-service
 replicaCount: 2
-
-
 deployment:
   name: product-service-deployment
-
 service:
   name: product-service
   port: 8003
   type: ClusterIP
   targetPort: 8003
-
 image:
   repository: jeongmin0709/product-service
-  tag: "1.0.2"
+  tag: "13"
   pullPolicy: IfNotPresent
-
 serviceAccount:
   create: true
   name: product-service-sa
-
 configMap:
   name: product-service-cm
-
 env:
   - name: SPRING_CONFIG_LOCATION
     value: "file:/app/config/application.yaml"
-
 volumeMounts:
   - name: config-volume
     mountPath: /app/config/application.yaml
     subPath: application.yaml
-
