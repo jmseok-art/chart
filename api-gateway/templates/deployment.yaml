@@ -20,6 +20,17 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.targetPort }}
+        {{- if or .Values.resources.requests .Values.resources.limits }}
+        resources:
+          {{- if .Values.resources.requests }}
+          requests:
+            {{- toYaml .Values.resources.requests | nindent 12 }}
+          {{- end }}
+          {{- if .Values.resources.limits }}
+          limits:
+            {{- toYaml .Values.resources.limits | nindent 12 }}
+          {{- end }}
+        {{- end }}
         {{- if .Values.env }}
         env:
         {{- range .Values.env }}
