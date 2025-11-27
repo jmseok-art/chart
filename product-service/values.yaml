@@ -1,6 +1,6 @@
 name: product-service
 namespace: product-service
-replicaCount: 2
+replicaCount: 1
 
 service:
   name: product-service
@@ -35,7 +35,7 @@ resources:
 
 autoscaling:
   enabled: true
-  minReplicas: 2
-  maxReplicas: 4
+  minReplicas: 1
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
