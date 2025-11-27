@@ -24,3 +24,9 @@ volumeMounts:
   - name: config-volume
     mountPath: /app/config/application.yaml
     subPath: application.yaml
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 80

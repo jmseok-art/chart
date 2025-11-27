@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name  }}
+  name: {{ .Values.name  }}
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -11,11 +11,11 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name  }}
+        app: {{ .Values.name  }}
     spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
-      - name: {{ .Chart.Name  }}
+      - name: {{ .Values.name  }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
@@ -24,7 +24,20 @@ spec:
         env:
         {{- range .Values.env }}
         - name: {{ .name }}
+          {{- if .value }}
           value: {{ .value | quote }}
+          {{- else if .valueFrom }}
+          valueFrom:
+            {{- if .valueFrom.secretKeyRef }}
+            secretKeyRef:
+              name: {{ .valueFrom.secretKeyRef.name }}
+              key: {{ .valueFrom.secretKeyRef.key }}
+            {{- else if .valueFrom.configMapKeyRef }}
+            configMapKeyRef:
+              name: {{ .valueFrom.configMapKeyRef.name }}
+              key: {{ .valueFrom.configMapKeyRef.key }}
+            {{- end }}
+          {{- end }}
         {{- end }}
         {{- end }}
         {{- if .Values.volumeMounts }}
