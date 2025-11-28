@@ -46,15 +46,15 @@ volumeMounts:
 
 resources:
   requests:
-    cpu: 250m
-    memory: 256Mi
+    cpu: 350m
+    memory: 300Mi
   limits:
     cpu: 500m
     memory: 512Mi
 
 autoscaling:
   enabled: true
-  minReplicas: 2
-  maxReplicas: 4
+  minReplicas: 1
+  maxReplicas: 2
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
