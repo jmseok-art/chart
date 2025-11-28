@@ -31,6 +31,11 @@ env:
       secretKeyRef:
         name: user-service-secret
         key: private-key
+  - name: REDIS_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: redis
+        key: redis-password
 
 volumeMounts:
   - name: config-volume
